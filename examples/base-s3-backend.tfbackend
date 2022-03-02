@@ -1,0 +1,7 @@
+region         = "eu-west-1"
+encrypt        = true
+
+bucket         = "base-statefiles-tst"
+
+key            = "terraform.tfstate"
+dynamodb_table = "base-statelocks-tst"

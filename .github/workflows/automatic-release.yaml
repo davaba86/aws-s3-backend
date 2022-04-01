@@ -5,7 +5,7 @@ name: Automatic-Release
 on:
   push:
     tags:
-    - "v*"
+      - "v*"
 
 # Automatically create GH release with release details specified (commits)
 jobs:
@@ -13,7 +13,7 @@ jobs:
     name: "Release"
     runs-on: "ubuntu-latest"
     steps:
-    - uses: "marvinpinto/action-automatic-releases@latest"
-      with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: false
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false

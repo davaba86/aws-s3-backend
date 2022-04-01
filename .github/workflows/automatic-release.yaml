@@ -1,5 +1,5 @@
 ---
-name: Release
+name: Automatic-Release
 
 # Run on every tag that begins with "v" (e.g. "v0.1.2")
 on:

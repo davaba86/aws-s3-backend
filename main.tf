@@ -25,7 +25,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_statefi
   bucket = aws_s3_bucket.terraform_statefiles.bucket
 
   rule {
-    # Enable server-side encryption
+    # Enable S3 Server Side Encryption (S3-SSE)
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
     }

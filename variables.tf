@@ -17,3 +17,9 @@ variable "aws_tags_base" {
     "terraform-created" = "true"
   }
 }
+
+variable "s3_logging_bucket" {
+  description = "Bucket name where log files will be sent."
+  type        = string
+  default     = "none"
+}

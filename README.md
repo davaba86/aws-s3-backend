@@ -24,6 +24,10 @@
 terraform plan
 ```
 
+## S3 Server Access Loggin
+
+By default loggin is no enabled on the bucket created by the module however to change this override the var.s3_logging_bucket which is passed down to the module.
+
 ## Abbreviations
 
 | Abbreviation | Expanded    | Description |

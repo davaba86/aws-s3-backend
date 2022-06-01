@@ -33,6 +33,16 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_statefi
   }
 }
 
+resource "aws_s3_bucket_logging" "terraform_statefiles" {
+  # If bucket name passed to module none then do nothing
+  count = var.s3_logging_bucket != "none" ? 1 : 0
+
+  bucket = aws_s3_bucket.terraform_statefiles.id
+
+  target_bucket = var.s3_logging_bucket
+  target_prefix = "log/"
+}
+
 # ##############################################################################
 # AWS: DynamoDB
 # ##############################################################################

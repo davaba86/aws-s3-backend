@@ -43,6 +43,15 @@ resource "aws_s3_bucket_logging" "terraform_statefiles" {
   target_prefix = "log/"
 }
 
+resource "aws_s3_bucket_public_access_block" "terraform_statefiles" {
+  bucket = aws_s3_bucket.terraform_statefiles.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
 # ##############################################################################
 # AWS: DynamoDB
 # ##############################################################################

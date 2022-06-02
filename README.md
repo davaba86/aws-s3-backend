@@ -1,5 +1,11 @@
 # Terraform AWS S3 Backend Module
 
+## TLDR
+
+Instead of creating and managing my backends manually I prefer to keep it in a custom module.
+
+This module creates an S3 bucket for the TF statefiles and DyanmoDB table for the statelocks.
+
 ## Setup
 
 1. Ensure you're able to authenticate to AWS and verify with for eg. `aws sts get-caller-identity`.

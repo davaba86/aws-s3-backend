@@ -34,6 +34,10 @@ terraform plan
 
 By default loggin is no enabled on the bucket created by the module however to change this override the var.s3_logging_bucket which is passed down to the module.
 
+## S3 Lifecycle Policy
+
+In order to prevent indefinetly storage of objects and specifically versions I've set the limit to 14 days.
+
 ## Abbreviations
 
 | Abbreviation | Expanded    | Description |

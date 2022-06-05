@@ -13,12 +13,13 @@ resource "aws_s3_bucket" "terraform_statefiles" {
   tags = var.aws_tags_base
 }
 
-resource "aws_s3_bucket_versioning" "terraform_statefiles" {
+resource "aws_s3_bucket_public_access_block" "terraform_statefiles" {
   bucket = aws_s3_bucket.terraform_statefiles.id
-  versioning_configuration {
-    # Keep revision history of our state file
-    status = "Enabled"
-  }
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_statefiles" {
@@ -43,13 +44,34 @@ resource "aws_s3_bucket_logging" "terraform_statefiles" {
   target_prefix = "log/"
 }
 
-resource "aws_s3_bucket_public_access_block" "terraform_statefiles" {
+resource "aws_s3_bucket_versioning" "terraform_statefiles" {
+  bucket = aws_s3_bucket.terraform_statefiles.id
+  versioning_configuration {
+    # Keep revision history of our state file
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "terraform_statefiles" {
   bucket = aws_s3_bucket.terraform_statefiles.id
 
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
+  rule {
+    id = "Cleanup, 2 Weeks"
+
+    filter {
+      prefix = "/"
+    }
+
+    expiration {
+      days = var.s3_expiration_days
+    }
+
+    noncurrent_version_expiration {
+      noncurrent_days = var.s3_expiration_days
+    }
+
+    status = "Enabled"
+  }
 }
 
 # ##############################################################################

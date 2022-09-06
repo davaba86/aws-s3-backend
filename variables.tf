@@ -14,7 +14,7 @@ variable "aws_tags_base" {
   description = "AWS base tags to be applied."
   type        = map(any)
   default = {
-    "terraform-created" = "true"
+    TerraformManaged = true
   }
 }
 
@@ -26,6 +26,6 @@ variable "s3_logging_bucket" {
 
 variable "s3_expiration_days" {
   description = "Number of days before objects and versions expire."
-  type = string
-  default = "14"
+  type        = string
+  default     = "14"
 }

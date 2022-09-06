@@ -6,6 +6,6 @@ env_long  = "testing"
 env_short = "tst"
 
 aws_tags_base = {
-  "environment"       = "tst"
-  "terraform-created" = "true"
+  Environment      = "Dev"
+  TerraformManaged = true
 }

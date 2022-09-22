@@ -24,6 +24,12 @@ variable "s3_logging_bucket" {
   default     = "none"
 }
 
+variable "s3_logging_prefix" {
+  description = "Separation of log files if bucket used for more."
+  type        = string
+  default     = "none"
+}
+
 variable "s3_expiration_days" {
   description = "Number of days before objects and versions expire."
   type        = string

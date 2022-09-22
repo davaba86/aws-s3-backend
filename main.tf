@@ -41,7 +41,7 @@ resource "aws_s3_bucket_logging" "terraform_statefiles" {
   bucket = aws_s3_bucket.terraform_statefiles.id
 
   target_bucket = var.s3_logging_bucket
-  target_prefix = "log/"
+  target_prefix = "s3-backend-logging/"
 }
 
 resource "aws_s3_bucket_versioning" "terraform_statefiles" {

@@ -56,19 +56,35 @@ resource "aws_s3_bucket_lifecycle_configuration" "terraform_statefiles" {
   bucket = aws_s3_bucket.terraform_statefiles.id
 
   rule {
-    id = "Cleanup, 2 Weeks"
+    id = "Empty after ${var.s3_expiration_days} days, #1"
 
-    filter {
-      prefix = "/"
+    abort_incomplete_multipart_upload {
+      days_after_initiation = var.s3_expiration_days
     }
 
     expiration {
-      days = var.s3_expiration_days
+      days                         = var.s3_expiration_days
+      expired_object_delete_marker = false
     }
+
+    filter {}
 
     noncurrent_version_expiration {
       noncurrent_days = var.s3_expiration_days
     }
+
+    status = "Enabled"
+  }
+
+  rule {
+    id = "Empty after ${var.s3_expiration_days} days, #2"
+
+    expiration {
+      days                         = 0
+      expired_object_delete_marker = true
+    }
+
+    filter {}
 
     status = "Enabled"
   }

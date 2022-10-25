@@ -30,8 +30,8 @@ variable "s3_logging_prefix" {
   default     = "none"
 }
 
-variable "s3_expiration_days" {
-  description = "Number of days before objects and versions expire."
-  type        = string
-  default     = "14"
-}
+# variable "s3_expiration_days" {
+#   description = "Number of days before objects and versions expire."
+#   type        = string
+#   default     = "14"
+# }

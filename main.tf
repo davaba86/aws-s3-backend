@@ -53,43 +53,43 @@ resource "aws_s3_bucket_versioning" "terraform_statefiles" {
   }
 }
 
-resource "aws_s3_bucket_lifecycle_configuration" "terraform_statefiles" {
-  bucket = aws_s3_bucket.terraform_statefiles.id
+# resource "aws_s3_bucket_lifecycle_configuration" "terraform_statefiles" {
+#   bucket = aws_s3_bucket.terraform_statefiles.id
 
-  rule {
-    id = "Empty after ${var.s3_expiration_days} days, #1"
+#   rule {
+#     id = "Empty after ${var.s3_expiration_days} days, #1"
 
-    abort_incomplete_multipart_upload {
-      days_after_initiation = var.s3_expiration_days
-    }
+#     abort_incomplete_multipart_upload {
+#       days_after_initiation = var.s3_expiration_days
+#     }
 
-    expiration {
-      days                         = var.s3_expiration_days
-      expired_object_delete_marker = false
-    }
+#     expiration {
+#       days                         = var.s3_expiration_days
+#       expired_object_delete_marker = false
+#     }
 
-    filter {}
+#     filter {}
 
-    noncurrent_version_expiration {
-      noncurrent_days = var.s3_expiration_days
-    }
+#     noncurrent_version_expiration {
+#       noncurrent_days = var.s3_expiration_days
+#     }
 
-    status = "Enabled"
-  }
+#     status = "Enabled"
+#   }
 
-  rule {
-    id = "Empty after ${var.s3_expiration_days} days, #2"
+#   rule {
+#     id = "Empty after ${var.s3_expiration_days} days, #2"
 
-    expiration {
-      days                         = 0
-      expired_object_delete_marker = true
-    }
+#     expiration {
+#       days                         = 0
+#       expired_object_delete_marker = true
+#     }
 
-    filter {}
+#     filter {}
 
-    status = "Enabled"
-  }
-}
+#     status = "Enabled"
+#   }
+# }
 
 # ##############################################################################
 # AWS: DynamoDB
